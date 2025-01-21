@@ -1,0 +1,266 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Grocery Booking API Swagger Documentation",
+    "description": "API Endpoints for Grocery Booking API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8081/api/v1/"
+    },
+    {
+      "url": "https://localhost:8081/api/v1/"
+    }
+  ],
+  "securityDefinitions": {},
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["Welcome"],
+        "summary": "Welcome to the system!!",
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/health-check": {
+      "get": {
+        "tags": ["Health Check"],
+        "summary": "Checks the health of the system (Up or down)",
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/users/": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Fetch All Users!!",
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/grocery/": {
+      "post": {
+        "tags": ["Grocery"],
+        "summary": "Create New Grocery Item",
+        "description": "This API creates a new grocery item. The request body should contain the name, price, quantity, category and user_id of the item to be created.",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Grocery"],
+        "summary": "Fetch List of Groceries",
+        "description": "This API fetches all the grocery items from the database. The response contains an array of grocery item objects.",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/grocery/{id}": {
+      "get": {
+        "tags": ["Grocery"],
+        "summary": "Fetch Grocery Item By ID",
+        "description": "This API fetches a grocery item by its ID. The ID of the grocery item to be fetched is passed as a parameter in the URL.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Grocery"],
+        "summary": "Update Grocery Item",
+        "description": "This API updates a grocery item in the grocery list. The ID of the grocery item to be updated is passed as a parameter in the URL and the fields to be updated are passed in the request body.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/grocery/{id}/{user_id}": {
+      "delete": {
+        "tags": ["Grocery"],
+        "summary": "Delete Grocery Item",
+        "description": "This API deletes a grocery item from the grocery list. The ID of the grocery item to be deleted is passed as a parameter in the URL.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/grocery/inventory/{id}": {
+      "put": {
+        "tags": ["Grocery"],
+        "summary": "Update Grocery Item Inventory",
+        "description": "This API updates a grocery quantity by its ID. The ID of the grocery item to be fetched is passed as a parameter in the URL.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "example": "any"
+                  },
+                  "quantity": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/order/": {
+      "post": {
+        "tags": ["Order"],
+        "summary": "Create New Order",
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "items": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Order"],
+        "summary": "Fetch List of Orders Placed",
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}

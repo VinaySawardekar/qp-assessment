@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: db
+    ports:
+      - "8888:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root@vinay
+      MYSQL_DATABASE: qpassignment
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - custom-grocery-network
+    restart: unless-stopped
+
+  grocery:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: grocery:latest
+    container_name: grocery
+    ports:
+      - "8081:8081"
+    env_file:
+      - .dockerenv
+    networks:
+      - custom-grocery-network
+    depends_on:
+      - db
+    restart: unless-stopped
+
+networks:
+  custom-grocery-network:
+    name: grocery-network
+    driver: bridge
+
+volumes:
+  db_data:
